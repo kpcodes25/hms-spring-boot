@@ -1,1 +1,1 @@
-# Hospital-Management-System
+# Spring-Boot_Hospital-Management-System
