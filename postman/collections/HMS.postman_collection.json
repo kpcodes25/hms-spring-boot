@@ -1,375 +1,469 @@
 {
-  "info": {
-    "_postman_id": "3c683245-7a36-42bd-a7d8-b5f0d0b21760",
-    "name": "HMS",
-    "description": "### Welcome to Postman! This is your first collection.\n\nCollections are your starting point for building and testing APIs. You can use this one to:\n\n• Group related requests  \n• Test your API in real-world scenarios  \n• Document and share your requests\n\nUpdate the name and overview whenever you’re ready to make it yours.\n\n[Learn more about Postman Collections.](https://learning.postman.com/docs/collections/collections-overview/)",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "_exporter_id": "50168567",
-    "_collection_link": "https://krupasindhupani123-3106029.postman.co/workspace/9affdbd4-9b8b-4373-819f-f1e9a7e7d313/collection/50168567-3c683245-7a36-42bd-a7d8-b5f0d0b21760?action=share&source=collection_link&creator=50168567"
-  },
-  "item": [
-    {
-      "name": "Patient",
-      "item": [
-        {
-          "name": "Get All Patients",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "a5cf6199-bd32-403d-998d-978239fb54e7",
-                "exec": [
-                  "pm.test(\"Status code is 200\", function () {",
-                  "    pm.response.to.have.status(200);",
-                  "});"
-                ],
-                "type": "text/javascript",
-                "packages": {},
-                "requests": {}
-              }
-            }
-          ],
-          "id": "cdc9a11b-053d-40ee-a26a-4d350908b78a",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "http://localhost:8080/api/v1.0/patients",
-              "protocol": "http",
-              "host": [
-                "localhost"
-              ],
-              "port": "8080",
-              "path": [
-                "api",
-                "v1.0",
-                "patients"
-              ]
-            },
-            "description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
-          },
-          "response": []
-        },
-        {
-          "name": "Create Patient",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "51b4985b-8d13-432f-bbb1-ccdbaaa3faab",
-                "exec": [
-                  "pm.test(\"Successful POST request\", function () {",
-                  "    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
-                  "});",
-                  ""
-                ],
-                "type": "text/javascript",
-                "packages": {},
-                "requests": {}
-              }
-            }
-          ],
-          "id": "2773f523-8595-4208-99a1-390bbda81a1d",
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json",
-                "type": "text"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"name\": \"Rahul kashyap\",\n  \"gender\": \"Male\",\n  \"age\": 30,\n  \"phoneNumber\": \"9876543270\",\n  \"email\": \"rahul@gmail.com.sa\",\n  \"address\": \"bbsr\",\n  \"disease\": \"Fever\"\n}\n",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "{{domain}}/api/v1.0/patients",
-              "host": [
-                "{{domain}}"
-              ],
-              "path": [
-                "api",
-                "v1.0",
-                "patients"
-              ]
-            },
-            "description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
-          },
-          "response": []
-        },
-        {
-          "name": "Get Patient By ID",
-          "id": "395698de-14be-4ea4-b7d5-b0d408acb784",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{domain}}/api/v1.0/patients/3",
-              "host": [
-                "{{domain}}"
-              ],
-              "path": [
-                "api",
-                "v1.0",
-                "patients",
-                "3"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Update Patient",
-          "id": "7d34118b-8eb5-43cb-a490-cc1979050ce0",
-          "request": {
-            "method": "PUT",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json",
-                "type": "text"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n  \"name\": \"Rahul Sharma\",\r\n  \"gender\": \"Male\",\r\n  \"age\": 35\r\n}\r\n",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "{{domain}}/api/v1.0/patients/3",
-              "host": [
-                "{{domain}}"
-              ],
-              "path": [
-                "api",
-                "v1.0",
-                "patients",
-                "3"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Delete Patient",
-          "id": "5560ab6b-b5bc-4055-ae02-4433cb7b34d8",
-          "request": {
-            "method": "DELETE",
-            "header": [],
-            "url": {
-              "raw": "{{domain}}/api/v1.0/patients/1",
-              "host": [
-                "{{domain}}"
-              ],
-              "path": [
-                "api",
-                "v1.0",
-                "patients",
-                "1"
-              ]
-            }
-          },
-          "response": []
-        }
-      ],
-      "id": "421ef688-e489-4d7d-b203-abb73a83715f"
-    },
-    {
-      "name": "Doctor",
-      "item": [
-        {
-          "name": "Create Doctor",
-          "id": "04e995a0-f6c0-411f-b0fa-8560f200454f",
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json",
-                "type": "text"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n  \"name\": \"Dr. Smith\",\r\n  \"specialization\": \"Cardiology\",\r\n  \"gender\" : \"Male\",\r\n  \"email\" : \"krupasindhu.pk@aiims.com\"\r\n\r\n}\r\n",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "{{domain}}/api/v1.0/doctors",
-              "host": [
-                "{{domain}}"
-              ],
-              "path": [
-                "api",
-                "v1.0",
-                "doctors"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Get All Doctors",
-          "id": "96a68dd0-d73d-4d4e-9c9c-cc857abed1cc",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{domain}}/api/v1.0/doctors",
-              "host": [
-                "{{domain}}"
-              ],
-              "path": [
-                "api",
-                "v1.0",
-                "doctors"
-              ]
-            }
-          },
-          "response": []
-        }
-      ],
-      "id": "975643a9-b3c0-41f6-8b39-75a594ac854b"
-    },
-    {
-      "name": "Appointment",
-      "item": [
-        {
-          "name": "Create Appointment",
-          "id": "a23bb7fe-9c64-4561-86b1-bad87886fa11",
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json",
-                "type": "text"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n  \"appointmentDate\": \"2026-01-10\",\r\n  \"appointmentTime\": \"10:00\",   // Make sure appointment time is provided\r\n  \"reason\": \"fever\",\r\n  \"status\": \"BOOKED\",\r\n  \"patient\": {\r\n    \"id\": 3  // The patient ID, make sure it exists in the system\r\n  },\r\n  \"doctor\": {\r\n    \"id\": 1  // The doctor ID, make sure it exists in the system\r\n  }\r\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "{{domain}}/api/v1.0/appointments",
-              "host": [
-                "{{domain}}"
-              ],
-              "path": [
-                "api",
-                "v1.0",
-                "appointments"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Get All Appointment",
-          "id": "4ac18dfe-4d04-4506-87a0-a58ce64217dd",
-          "request": {
-            "method": "GET",
-            "header": []
-          },
-          "response": []
-        }
-      ],
-      "id": "e54127da-85d9-4dd3-a3f9-cc2c3f4b2008"
-    },
-    {
-      "name": "Bills",
-      "item": [
-        {
-          "name": "Create Bill",
-          "id": "53091df3-d3dd-4d17-a47a-870d03354b6d",
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json",
-                "type": "text"
-              },
-              {
-                "key": "",
-                "value": "",
-                "type": "text"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n  \"billNumber\": \"BILL12345\",          // Bill number (unique)\r\n  \"amount\": 250.75,                   // Total bill amount\r\n  \"status\": \"PAID\",                   // Payment status (PAID / UNPAID)\r\n  \"billDate\": \"2026-01-10\",           // Date of billing (in YYYY-MM-DD format)\r\n  \"patient\": {\r\n    \"id\": 3                           // ID of the patient (existing patient in the system)\r\n  },\r\n  \"doctor\": {\r\n    \"id\": 1                           // ID of the doctor (existing doctor in the system, can be null if not issued by a doctor)\r\n  }\r\n}\r\n",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "{{domain}}/api/v1.0/bills",
-              "host": [
-                "{{domain}}"
-              ],
-              "path": [
-                "api",
-                "v1.0",
-                "bills"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Get All Bill",
-          "id": "3d8d5d64-04b0-4302-b97f-39006577eda6",
-          "request": {
-            "method": "GET",
-            "header": []
-          },
-          "response": []
-        },
-        {
-          "name": "Specific Bill",
-          "id": "6fbadd43-d7e5-482e-b0fe-d352918d4458",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{domain}}/api/v1.0/bills/2",
-              "host": [
-                "{{domain}}"
-              ],
-              "path": [
-                "api",
-                "v1.0",
-                "bills",
-                "2"
-              ]
-            }
-          },
-          "response": []
-        }
-      ],
-      "id": "a74678d6-e8ef-4dc0-bb04-8ca455080d8c"
-    }
-  ]
+	"info": {
+		"_postman_id": "3c683245-7a36-42bd-a7d8-b5f0d0b21760",
+		"name": "HMS",
+		"description": "### Welcome to Postman! This is your first collection.\n\nCollections are your starting point for building and testing APIs. You can use this one to:\n\n• Group related requests  \n• Test your API in real-world scenarios  \n• Document and share your requests\n\nUpdate the name and overview whenever you’re ready to make it yours.\n\n[Learn more about Postman Collections.](https://learning.postman.com/docs/collections/collections-overview/)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "50168567",
+		"_collection_link": "https://krupasindhupani123-3106029.postman.co/workspace/9affdbd4-9b8b-4373-819f-f1e9a7e7d313/collection/50168567-3c683245-7a36-42bd-a7d8-b5f0d0b21760?action=share&source=collection_link&creator=50168567"
+	},
+	"item": [
+		{
+			"name": "Patient",
+			"item": [
+				{
+					"name": "Get All Patients",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{domain}}/api/v1.0/patients?page=0&size=5&sortBy=name&direction=asc",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1.0",
+								"patients"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "5"
+								},
+								{
+									"key": "sortBy",
+									"value": "name"
+								},
+								{
+									"key": "direction",
+									"value": "asc"
+								}
+							]
+						},
+						"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+					},
+					"response": []
+				},
+				{
+					"name": "Create Patient",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Rahul kashyap\",\n  \"gender\": \"Male\",\n  \"age\": 30,\n  \"phoneNumber\": \"9876543270\",\n  \"email\": \"rahul@gmail.com.sa\",\n  \"address\": \"bbsr\",\n  \"disease\": \"Fever\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/api/v1.0/patients",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1.0",
+								"patients"
+							]
+						},
+						"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Patient By ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{domain}}/api/v1.0/patients/3",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1.0",
+								"patients",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Patient",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Rahul Sharma\",\r\n  \"gender\": \"Male\",\r\n  \"age\": 35\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/api/v1.0/patients/3",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1.0",
+								"patients",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Patient",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{domain}}/api/v1.0/patients/1",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1.0",
+								"patients",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Serach Patient",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{domain}}/api/v1.0/patients/search?name=Rahul kashyap",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1.0",
+								"patients",
+								"search"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Rahul kashyap"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Doctor",
+			"item": [
+				{
+					"name": "Create Doctor",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Dr. Smith\",\r\n  \"specialization\": \"Cardiology\",\r\n  \"gender\" : \"Male\",\r\n  \"email\" : \"krupasindhu.pk@aiims.com\"\r\n\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/api/v1.0/doctors",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1.0",
+								"doctors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Doctors",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{domain}}/api/v1.0/doctors",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1.0",
+								"doctors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search Doctors",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{domain}}/api/v1.0/doctors/search?name=Dr. Smith&page=0&size=5",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1.0",
+								"doctors",
+								"search"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Dr. Smith"
+								},
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Appointment",
+			"item": [
+				{
+					"name": "Create Appointment",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"appointmentDate\": \"2026-01-10\",\r\n  \"appointmentTime\": \"10:00\",   // Make sure appointment time is provided\r\n  \"reason\": \"fever\",\r\n  \"status\": \"BOOKED\",\r\n  \"patient\": {\r\n    \"id\": 3  // The patient ID, make sure it exists in the system\r\n  },\r\n  \"doctor\": {\r\n    \"id\": 1  // The doctor ID, make sure it exists in the system\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/api/v1.0/appointments",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1.0",
+								"appointments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Appointment",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{domain}}/api/v1.0/appointments/filter/patient?patientId=3",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1.0",
+								"appointments",
+								"filter",
+								"patient"
+							],
+							"query": [
+								{
+									"key": "patientId",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Bills",
+			"item": [
+				{
+					"name": "Create Bill",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"billNumber\": \"BILL12345\",          // Bill number (unique)\r\n  \"amount\": 250.75,                   // Total bill amount\r\n  \"status\": \"PAID\",                   // Payment status (PAID / UNPAID)\r\n  \"billDate\": \"2026-01-10\",           // Date of billing (in YYYY-MM-DD format)\r\n  \"patient\": {\r\n    \"id\": 3                           // ID of the patient (existing patient in the system)\r\n  },\r\n  \"doctor\": {\r\n    \"id\": 1                           // ID of the doctor (existing doctor in the system, can be null if not issued by a doctor)\r\n  }\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/api/v1.0/bills",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1.0",
+								"bills"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Bill",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{domain}}/api/v1.0/bills?status=PAID",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1.0",
+								"bills"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "PAID"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Specific Bill",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{domain}}/api/v1.0/bills/2",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1.0",
+								"bills",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
 }
