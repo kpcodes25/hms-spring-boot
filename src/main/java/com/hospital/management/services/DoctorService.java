@@ -1,7 +1,9 @@
 package com.hospital.management.services;
 
-import java.util.List;
-
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.hospital.management.models.Doctor;
@@ -20,13 +22,26 @@ public class DoctorService {
         return doctorRepository.save(doctor);
     }
 
-    public List<Doctor> getAllDoctors() {
-        return doctorRepository.findAll();
+    public Page<Doctor> getAllDoctors(int page, int size, String sortBy, String direction) {
+        Sort sort = direction.equalsIgnoreCase("desc")
+                ? Sort.by(sortBy).descending()
+                : Sort.by(sortBy).ascending();
+
+        Pageable pageable = PageRequest.of(page, size, sort);
+        return doctorRepository.findAll(pageable);
     }
 
     public Doctor getDoctorById(Long id) {
         return doctorRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Doctor not found"));
+    }
+
+    public Page<Doctor> searchByName(String name, Pageable pageable) {
+        return doctorRepository.findByNameContainingIgnoreCase(name, pageable);
+    }
+
+    public Page<Doctor> filterBySpecialization(String specialization, Pageable pageable) {
+        return doctorRepository.findBySpecializationIgnoreCase(specialization, pageable);
     }
 
     public Doctor updateDoctor(Long id, Doctor updatedDoctor) {

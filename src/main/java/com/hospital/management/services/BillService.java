@@ -1,7 +1,7 @@
 package com.hospital.management.services;
 
-import java.util.List;
-
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.hospital.management.models.Bill;
@@ -20,8 +20,23 @@ public class BillService {
         return billRepository.save(bill);
     }
 
-    public List<Bill> getAll() {
-        return billRepository.findAll();
+    public Page<Bill> getBills(String patientName, String status, Pageable pageable) {
+
+        if (patientName != null && status != null) {
+            return billRepository
+                    .findByPatientNameContainingIgnoreCaseAndStatus(patientName, status, pageable);
+        }
+
+        if (patientName != null) {
+            return billRepository
+                    .findByPatientNameContainingIgnoreCase(patientName, pageable);
+        }
+
+        if (status != null) {
+            return billRepository.findByStatus(status, pageable);
+        }
+
+        return billRepository.findAll(pageable);
     }
 
     public Bill getById(Long id) {
