@@ -32,8 +32,7 @@ public class Appointment {
 	    @Column(nullable = false)
 	    private LocalDate appointmentDate;
 
-	    // Appointment time
-	    @Column(nullable = false)
+	    // Appointment time	    
 	    private LocalTime appointmentTime;
 
 	    // Reason for visit
@@ -48,11 +47,11 @@ public class Appointment {
 
 	    // Many appointments belong to one patient
 	    @ManyToOne
-	    @JoinColumn(name = "patient_id", nullable = false)
+	    @JoinColumn(name = "patient_id")
 	    private Patient patient;
 
 	    // Many appointments belong to one doctor
 	    @ManyToOne
-	    @JoinColumn(name = "doctor_id", nullable = false)
+	    @JoinColumn(name = "doctor_id")
 	    private Doctor doctor;
 	}
